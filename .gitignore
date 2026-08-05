@@ -12,6 +12,7 @@ build/
 .env
 .env.local
 .env*.local
+vercel-env.txt
 
 # misc
 .DS_Store
