@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.prose-body a {
+  color: #2c4a6e;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose-body a:hover {
+  color: #0e1b2e;
+}
