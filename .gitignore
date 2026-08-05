@@ -27,3 +27,4 @@ next-env.d.ts
 mcp/node_modules/
 mcp/.next/
 mcp/.env.local
+.claude/
