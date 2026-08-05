@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git --version)",
+      "Bash(xcode-select -p)",
+      "Bash(git fetch *)",
+      "Bash(git branch *)"
+    ]
+  }
+}

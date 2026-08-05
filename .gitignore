@@ -13,6 +13,7 @@ build/
 .env.local
 .env*.local
 vercel-env.txt
+mcp-vercel-env.txt
 
 # misc
 .DS_Store
