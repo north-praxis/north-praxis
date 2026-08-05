@@ -10,7 +10,7 @@ export default function NotFound() {
       <main className="relative overflow-hidden bg-night-wash">
         <Constellation />
         <div className="relative mx-auto max-w-3xl px-6 py-40 text-center">
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-mid">404</p>
+          <p className="text-[11px] uppercase tracking-[0.35em] text-star">404</p>
           <h1 className="mt-4 font-display text-4xl text-paper">
             This page is off the map
           </h1>
@@ -19,7 +19,7 @@ export default function NotFound() {
           </p>
           <Link
             href="/"
-            className="mt-8 inline-block rounded bg-star px-6 py-3 text-sm font-medium text-night transition hover:brightness-110"
+            className="mt-8 inline-block rounded-full bg-star px-8 py-3.5 text-xs font-medium uppercase tracking-[0.2em] text-night transition hover:bg-[#E3B76F]"
           >
             Back to home
           </Link>

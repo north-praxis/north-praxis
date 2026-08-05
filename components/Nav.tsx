@@ -10,17 +10,21 @@ export default function Nav({ dark = false }: { dark?: boolean }) {
   const hover = dark ? 'hover:text-white' : 'hover:text-night';
 
   return (
-    <header className={dark ? 'absolute inset-x-0 top-0 z-20' : 'bg-paper border-b border-pale'}>
-      <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
+    <header className={dark ? 'absolute inset-x-0 top-0 z-20' : 'bg-paper border-b border-slate/10'}>
+      <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-6">
         <Link
           href="/"
-          className={`font-mono text-sm tracking-[0.2em] ${dark ? 'text-mist' : 'text-night'} ${hover}`}
+          className={`font-display text-xl tracking-wide ${dark ? 'text-paper' : 'text-night'} transition hover:opacity-80`}
         >
-          NORTH PRAXIS
+          North Praxis
         </Link>
-        <div className="hidden gap-8 sm:flex">
+        <div className="hidden items-center gap-10 sm:flex">
           {NAV_LINKS.map((l) => (
-            <Link key={l.href} href={l.href} className={`text-sm ${text} ${hover}`}>
+            <Link
+              key={l.href}
+              href={l.href}
+              className={`text-[13px] uppercase tracking-[0.18em] ${text} ${hover} transition`}
+            >
               {l.label}
             </Link>
           ))}
@@ -46,7 +50,7 @@ export default function Nav({ dark = false }: { dark?: boolean }) {
             <Link
               key={l.href}
               href={l.href}
-              className={`block py-3 text-base ${text} ${hover}`}
+              className={`block py-3 text-sm uppercase tracking-[0.18em] ${text} ${hover}`}
               onClick={() => setOpen(false)}
             >
               {l.label}

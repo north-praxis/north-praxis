@@ -4,18 +4,26 @@ import type { Section, CardItem } from '@/lib/types';
 import Constellation from './Constellation';
 import ContactForm from './ContactForm';
 
-const accentBorder: Record<NonNullable<CardItem['accent']>, string> = {
-  slate: 'border-t-slate',
-  mid: 'border-t-mid',
-  star: 'border-t-star',
-};
-
-function Eyebrow({ text }: { text?: string }) {
+function Eyebrow({ text, light = false }: { text?: string; light?: boolean }) {
   if (!text) return null;
   return (
-    <p className="mb-3 font-mono text-xs uppercase tracking-[0.25em] text-mid">{text}</p>
+    <p
+      className={`mb-4 text-[11px] uppercase tracking-[0.35em] ${light ? 'text-star' : 'text-star'}`}
+    >
+      {text}
+    </p>
   );
 }
+
+function GoldRule() {
+  return <span className="mt-4 block h-px w-10 bg-star/70" aria-hidden="true" />;
+}
+
+const buttonPrimary =
+  'inline-block rounded-full bg-star px-8 py-3.5 text-xs font-medium uppercase tracking-[0.2em] text-night transition duration-300 hover:bg-[#E3B76F] hover:shadow-lg hover:shadow-star/20';
+
+const buttonDark =
+  'inline-block rounded-full bg-night px-8 py-3.5 text-xs font-medium uppercase tracking-[0.2em] text-paper transition duration-300 hover:bg-deep hover:shadow-lg';
 
 export default function Sections({ sections }: { sections: Section[] }) {
   let heroSeen = false;
@@ -29,15 +37,22 @@ export default function Sections({ sections }: { sections: Section[] }) {
             return (
               <section key={i} className="relative overflow-hidden bg-night-wash">
                 <Constellation />
-                <div className="relative mx-auto max-w-5xl px-6 pb-24 pt-36 sm:pb-32 sm:pt-44">
-                  <HTag className="max-w-2xl font-display text-4xl leading-tight text-paper sm:text-5xl">
+                <div
+                  className="pointer-events-none absolute inset-0"
+                  style={{
+                    background:
+                      'radial-gradient(600px 400px at 78% 22%, rgba(216,167,91,0.10), transparent 70%)',
+                  }}
+                  aria-hidden="true"
+                />
+                <div className="relative mx-auto max-w-5xl px-6 pb-28 pt-40 sm:pb-40 sm:pt-52">
+                  <HTag className="max-w-2xl font-display text-5xl font-normal leading-[1.12] text-paper sm:text-6xl">
                     {s.headline}
                   </HTag>
-                  <p className="mt-5 max-w-xl text-lg text-mist">{s.subhead}</p>
-                  <Link
-                    href={s.ctaHref}
-                    className="mt-8 inline-block rounded bg-star px-6 py-3 text-sm font-medium text-night transition hover:brightness-110"
-                  >
+                  <p className="mt-7 max-w-xl text-lg font-light leading-relaxed text-mist">
+                    {s.subhead}
+                  </p>
+                  <Link href={s.ctaHref} className={`mt-10 ${buttonPrimary}`}>
                     {s.ctaLabel}
                   </Link>
                 </div>
@@ -49,13 +64,14 @@ export default function Sections({ sections }: { sections: Section[] }) {
             if (HTag === 'h1') heroSeen = true;
             return (
               <section key={i} className="bg-paper">
-                <div className="mx-auto max-w-3xl px-6 py-20">
+                <div className="mx-auto max-w-3xl px-6 py-24 sm:py-28">
                   <Eyebrow text={s.eyebrow} />
-                  <HTag className="font-display text-3xl text-night sm:text-4xl">
+                  <HTag className="font-display text-3xl font-normal leading-snug text-night sm:text-4xl">
                     {s.heading}
                   </HTag>
+                  <GoldRule />
                   <div
-                    className="prose-body mt-6 text-lg leading-relaxed text-slate"
+                    className="prose-body mt-7 text-lg font-light leading-[1.85] text-slate"
                     dangerouslySetInnerHTML={{ __html: s.body }}
                   />
                 </div>
@@ -65,19 +81,24 @@ export default function Sections({ sections }: { sections: Section[] }) {
           case 'cards':
             return (
               <section key={i} className="bg-mist-wash">
-                <div className="mx-auto max-w-5xl px-6 py-20">
+                <div className="mx-auto max-w-5xl px-6 py-24 sm:py-28">
                   <Eyebrow text={s.eyebrow} />
                   {s.heading && (
-                    <h2 className="font-display text-3xl text-night">{s.heading}</h2>
+                    <h2 className="font-display text-3xl font-normal text-night sm:text-4xl">
+                      {s.heading}
+                    </h2>
                   )}
-                  <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    {s.cards.map((c, j) => {
+                  <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    {s.cards.map((c: CardItem, j: number) => {
                       const inner = (
-                        <div
-                          className={`h-full rounded-md border-t-[3px] bg-white p-6 shadow-sm transition hover:shadow-md ${accentBorder[c.accent ?? 'slate']}`}
-                        >
-                          <h3 className="text-lg font-medium text-night">{c.title}</h3>
-                          <p className="mt-3 text-sm leading-relaxed text-mid">{c.body}</p>
+                        <div className="group h-full rounded-lg border border-slate/10 bg-white p-8 transition duration-300 hover:-translate-y-1 hover:border-star/40 hover:shadow-xl hover:shadow-slate/10">
+                          <h3 className="font-display text-xl font-normal text-night">
+                            {c.title}
+                          </h3>
+                          <span className="mt-3 block h-px w-8 bg-star/60 transition-all duration-300 group-hover:w-14" aria-hidden="true" />
+                          <p className="mt-5 text-[15px] font-light leading-[1.8] text-mid">
+                            {c.body}
+                          </p>
                         </div>
                       );
                       return c.href ? (
@@ -96,18 +117,21 @@ export default function Sections({ sections }: { sections: Section[] }) {
             return (
               <section key={i} className="bg-paper">
                 <div
-                  className={`mx-auto flex max-w-5xl flex-col gap-10 px-6 py-20 sm:items-center ${s.flip ? 'sm:flex-row-reverse' : 'sm:flex-row'}`}
+                  className={`mx-auto flex max-w-5xl flex-col gap-12 px-6 py-24 sm:items-center ${s.flip ? 'sm:flex-row-reverse' : 'sm:flex-row'}`}
                 >
                   <div className="sm:w-1/2">
                     <Eyebrow text={s.eyebrow} />
-                    <h2 className="font-display text-3xl text-night">{s.heading}</h2>
+                    <h2 className="font-display text-3xl font-normal text-night">
+                      {s.heading}
+                    </h2>
+                    <GoldRule />
                     <div
-                      className="mt-5 leading-relaxed text-slate"
+                      className="mt-6 font-light leading-[1.85] text-slate"
                       dangerouslySetInnerHTML={{ __html: s.body }}
                     />
                   </div>
                   {s.imageUrl && (
-                    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md sm:w-1/2">
+                    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg sm:w-1/2">
                       <Image
                         src={s.imageUrl}
                         alt={s.imageAlt ?? ''}
@@ -121,15 +145,31 @@ export default function Sections({ sections }: { sections: Section[] }) {
             );
           case 'list':
             return (
-              <section key={i} className="border-t border-pale bg-paper" id={s.eyebrow?.toLowerCase().includes('nonprofit') ? 'nonprofits' : s.eyebrow?.toLowerCase().includes('funder') ? 'foundations' : s.eyebrow?.toLowerCase().includes('investor') ? 'investors' : undefined}>
-                <div className="mx-auto max-w-3xl px-6 py-16">
+              <section
+                key={i}
+                className="border-t border-slate/10 bg-paper"
+                id={
+                  s.eyebrow?.toLowerCase().includes('nonprofit')
+                    ? 'nonprofits'
+                    : s.eyebrow?.toLowerCase().includes('funder')
+                      ? 'foundations'
+                      : s.eyebrow?.toLowerCase().includes('investor')
+                        ? 'investors'
+                        : undefined
+                }
+              >
+                <div className="mx-auto max-w-3xl px-6 py-20 sm:py-24">
                   <Eyebrow text={s.eyebrow} />
-                  <h2 className="font-display text-2xl text-night sm:text-3xl">{s.heading}</h2>
-                  <dl className="mt-8 space-y-8">
+                  <h2 className="font-display text-2xl font-normal text-night sm:text-3xl">
+                    {s.heading}
+                  </h2>
+                  <dl className="mt-10 space-y-10">
                     {s.items.map((item, j) => (
-                      <div key={j} className="border-l-2 border-mist pl-5">
-                        <dt className="font-medium text-night">{item.title}</dt>
-                        <dd className="mt-1 leading-relaxed text-mid">{item.body}</dd>
+                      <div key={j} className="border-l border-star/50 pl-6">
+                        <dt className="font-display text-lg text-night">{item.title}</dt>
+                        <dd className="mt-2 font-light leading-[1.8] text-mid">
+                          {item.body}
+                        </dd>
                       </div>
                     ))}
                   </dl>
@@ -139,13 +179,24 @@ export default function Sections({ sections }: { sections: Section[] }) {
           case 'cta':
             return (
               <section key={i} className="relative overflow-hidden bg-night-wash">
-                <div className="relative mx-auto max-w-3xl px-6 py-16 text-center">
-                  <h2 className="font-display text-2xl text-paper sm:text-3xl">{s.heading}</h2>
-                  {s.body && <p className="mx-auto mt-4 max-w-xl text-mist">{s.body}</p>}
-                  <Link
-                    href={s.ctaHref}
-                    className="mt-7 inline-block rounded bg-star px-6 py-3 text-sm font-medium text-night transition hover:brightness-110"
-                  >
+                <div
+                  className="pointer-events-none absolute inset-0"
+                  style={{
+                    background:
+                      'radial-gradient(500px 300px at 50% 100%, rgba(216,167,91,0.08), transparent 70%)',
+                  }}
+                  aria-hidden="true"
+                />
+                <div className="relative mx-auto max-w-3xl px-6 py-20 text-center sm:py-24">
+                  <h2 className="font-display text-3xl font-normal text-paper sm:text-4xl">
+                    {s.heading}
+                  </h2>
+                  {s.body && (
+                    <p className="mx-auto mt-5 max-w-xl font-light leading-relaxed text-mist">
+                      {s.body}
+                    </p>
+                  )}
+                  <Link href={s.ctaHref} className={`mt-9 ${buttonPrimary}`}>
                     {s.ctaLabel}
                   </Link>
                 </div>
@@ -156,12 +207,13 @@ export default function Sections({ sections }: { sections: Section[] }) {
             heroSeen = true;
             return (
               <section key={i} className="bg-paper">
-                <div className="mx-auto max-w-2xl px-6 py-20">
-                  <HTag className="font-display text-3xl text-night sm:text-4xl">
+                <div className="mx-auto max-w-2xl px-6 py-24">
+                  <HTag className="font-display text-4xl font-normal text-night">
                     {s.heading}
                   </HTag>
-                  <p className="mt-4 leading-relaxed text-slate">{s.body}</p>
-                  <div className="mt-10">
+                  <GoldRule />
+                  <p className="mt-6 font-light leading-[1.85] text-slate">{s.body}</p>
+                  <div className="mt-12">
                     <ContactForm />
                   </div>
                 </div>
