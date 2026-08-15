@@ -75,6 +75,50 @@ export const TOOL_DEFS = [
     },
   },
   {
+    name: 'list_portal_clients',
+    description:
+      'List client portal workspaces (slug, name, status, last update). Access codes are only returned by get_portal_client.',
+    inputSchema: { type: 'object', properties: {}, required: [] },
+  },
+  {
+    name: 'get_portal_client',
+    description:
+      'Get one client portal record by slug, including its access code and full content (welcome, milestones, updates, documents).',
+    inputSchema: {
+      type: 'object',
+      properties: { slug: { type: 'string' } },
+      required: ['slug'],
+    },
+  },
+  {
+    name: 'upsert_portal_client',
+    description:
+      'Create or fully overwrite a client portal workspace. Content shape: { welcome, milestones: [{title, date, state: done|now|next, note?}], updates: [{date, body}], documents: [{title, url, note?}] }. Portal pages are always live-fetched, so no deploy is needed after changes.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        slug: { type: 'string' },
+        name: { type: 'string' },
+        access_code: {
+          type: 'string',
+          description: 'Code the client types to enter. Short, memorable, unique.',
+        },
+        content: { type: 'object' },
+        status: { type: 'string', enum: ['active', 'archived'] },
+      },
+      required: ['slug', 'name', 'access_code', 'content'],
+    },
+  },
+  {
+    name: 'delete_portal_client',
+    description: 'Delete a client portal workspace entirely.',
+    inputSchema: {
+      type: 'object',
+      properties: { slug: { type: 'string' } },
+      required: ['slug'],
+    },
+  },
+  {
     name: 'trigger_deploy',
     description:
       'Trigger a Vercel rebuild so saved content changes go live (takes about a minute).',
@@ -143,6 +187,46 @@ export async function callTool(name: string, args: any): Promise<unknown> {
       if (error) throw new Error(error.message);
       const { data } = client.storage.from(BUCKET()).getPublicUrl(path);
       return { ok: true, url: data.publicUrl };
+    }
+    case 'list_portal_clients': {
+      const { data, error } = await db()
+        .from('portal_clients')
+        .select('slug, name, status, updated_at, updated_by')
+        .order('slug');
+      if (error) throw new Error(error.message);
+      return data;
+    }
+    case 'get_portal_client': {
+      const { data, error } = await db()
+        .from('portal_clients')
+        .select('*')
+        .eq('slug', args.slug)
+        .single();
+      if (error) throw new Error(error.message);
+      return data;
+    }
+    case 'upsert_portal_client': {
+      const { error } = await db()
+        .from('portal_clients')
+        .upsert({
+          slug: args.slug,
+          name: args.name,
+          access_code: args.access_code,
+          content: args.content,
+          status: args.status ?? 'active',
+          updated_at: new Date().toISOString(),
+          updated_by: 'claude-mcp',
+        });
+      if (error) throw new Error(error.message);
+      return { ok: true, slug: args.slug, portal_url: '/portal' };
+    }
+    case 'delete_portal_client': {
+      const { error } = await db()
+        .from('portal_clients')
+        .delete()
+        .eq('slug', args.slug);
+      if (error) throw new Error(error.message);
+      return { ok: true, deleted: args.slug };
     }
     case 'trigger_deploy': {
       const url = process.env.DEPLOY_HOOK_URL;
