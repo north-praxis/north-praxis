@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Julius_Sans_One, Inter, IBM_Plex_Mono } from 'next/font/google';
 import { SITE } from '@/lib/defaults';
+import CicadaButton from '@/components/CicadaButton';
 import './globals.css';
 
 const display = Julius_Sans_One({
@@ -32,7 +33,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable}`}>
-      <body className="bg-paper font-sans text-night antialiased">{children}</body>
+      <body className="bg-paper font-sans text-night antialiased">
+        {children}
+        <CicadaButton />
+      </body>
     </html>
   );
 }
