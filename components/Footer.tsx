@@ -4,7 +4,7 @@ import { NAV_LINKS, SITE } from '@/lib/defaults';
 export default function Footer() {
   return (
     <footer className="bg-night text-mist">
-      <div className="mx-auto flex max-w-5xl flex-col gap-8 px-6 py-14 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mx-auto flex max-w-5xl flex-col gap-6 px-6 py-10 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="font-display text-xl tracking-wide text-paper">North Praxis</p>
           <p className="mt-2 text-sm font-light text-mid">

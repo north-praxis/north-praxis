@@ -45,12 +45,12 @@ export default function Sections({ sections }: { sections: Section[] }) {
                   }}
                   aria-hidden="true"
                 />
-                <div className="relative mx-auto max-w-5xl px-6 pb-36 pt-48 sm:pb-52 sm:pt-64">
+                <div className="relative mx-auto max-w-5xl px-6 pb-28 pt-40 sm:pb-36 sm:pt-52">
                   <HTag
                     className="hero-h max-w-3xl font-display text-7xl leading-[1.02] text-[#F2EAD9] sm:text-8xl"
                     dangerouslySetInnerHTML={{ __html: s.headline }}
                   />
-                  <p className="mt-8 max-w-xl text-lg font-light leading-relaxed text-mist/75">
+                  <p className="mt-6 max-w-xl text-lg font-light leading-relaxed text-mist/75">
                     {s.subhead}
                   </p>
                   <Link href={s.ctaHref} className={`mt-10 ${buttonPrimary}`}>
@@ -65,14 +65,14 @@ export default function Sections({ sections }: { sections: Section[] }) {
             if (HTag === 'h1') heroSeen = true;
             return (
               <section key={i} className="bg-paper">
-                <div className="mx-auto max-w-3xl px-6 py-24 sm:py-28">
+                <div className="mx-auto max-w-3xl px-6 py-16 sm:py-20">
                   <Eyebrow text={s.eyebrow} />
                   <HTag className="font-display text-3xl font-normal leading-snug text-night sm:text-4xl">
                     {s.heading}
                   </HTag>
                   <GoldRule />
                   <div
-                    className="prose-body mt-7 text-lg font-light leading-[1.85] text-slate"
+                    className="prose-body mt-5 text-lg font-light leading-[1.85] text-slate"
                     dangerouslySetInnerHTML={{ __html: s.body }}
                   />
                 </div>
@@ -82,14 +82,14 @@ export default function Sections({ sections }: { sections: Section[] }) {
           case 'cards':
             return (
               <section key={i} className="bg-mist-wash">
-                <div className="mx-auto max-w-5xl px-6 py-24 sm:py-28">
+                <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
                   <Eyebrow text={s.eyebrow} />
                   {s.heading && (
                     <h2 className="font-display text-3xl font-normal text-night sm:text-4xl">
                       {s.heading}
                     </h2>
                   )}
-                  <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  <div className="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                     {s.cards.map((c: CardItem, j: number) => {
                       const inner = (
                         <div className="group h-full rounded-lg border border-slate/10 bg-white p-8 transition duration-300 hover:-translate-y-1 hover:border-star/40 hover:shadow-xl hover:shadow-slate/10">
@@ -118,7 +118,7 @@ export default function Sections({ sections }: { sections: Section[] }) {
             return (
               <section key={i} className="bg-paper">
                 <div
-                  className={`mx-auto flex max-w-5xl flex-col gap-12 px-6 py-24 sm:items-center ${s.flip ? 'sm:flex-row-reverse' : 'sm:flex-row'}`}
+                  className={`mx-auto flex max-w-5xl flex-col gap-10 px-6 py-16 sm:items-center ${s.flip ? 'sm:flex-row-reverse' : 'sm:flex-row'}`}
                 >
                   <div className="sm:w-1/2">
                     <Eyebrow text={s.eyebrow} />
@@ -159,12 +159,12 @@ export default function Sections({ sections }: { sections: Section[] }) {
                         : undefined
                 }
               >
-                <div className="mx-auto max-w-3xl px-6 py-20 sm:py-24">
+                <div className="mx-auto max-w-3xl px-6 py-14 sm:py-16">
                   <Eyebrow text={s.eyebrow} />
                   <h2 className="font-display text-2xl font-normal text-night sm:text-3xl">
                     {s.heading}
                   </h2>
-                  <dl className="mt-10 space-y-10">
+                  <dl className="mt-8 space-y-7">
                     {s.items.map((item, j) => (
                       <div key={j} className="border-l border-star/50 pl-6">
                         <dt className="font-display text-lg text-night">{item.title}</dt>
@@ -188,7 +188,7 @@ export default function Sections({ sections }: { sections: Section[] }) {
                   }}
                   aria-hidden="true"
                 />
-                <div className="relative mx-auto max-w-3xl px-6 py-20 text-center sm:py-24">
+                <div className="relative mx-auto max-w-3xl px-6 py-16 text-center">
                   <h2 className="font-display text-3xl font-normal text-paper sm:text-4xl">
                     {s.heading}
                   </h2>
