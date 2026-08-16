@@ -41,7 +41,7 @@ export default function Sections({ sections }: { sections: Section[] }) {
                   className="pointer-events-none absolute inset-0"
                   style={{
                     background:
-                      'radial-gradient(600px 400px at 78% 22%, rgba(216,167,91,0.08), transparent 70%), radial-gradient(900px 300px at 50% 104%, rgba(196,138,66,0.10), transparent 70%), radial-gradient(120% 95% at 50% 38%, transparent 55%, rgba(2,3,8,0.5) 100%)',
+                      'radial-gradient(560px 380px at 79% 18%, rgba(216,167,91,0.05), transparent 70%), radial-gradient(120% 95% at 50% 38%, transparent 55%, rgba(2,3,7,0.45) 100%)',
                   }}
                   aria-hidden="true"
                 />

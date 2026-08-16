@@ -21,7 +21,7 @@ const config: Config = {
       },
       backgroundImage: {
         'night-wash':
-          'linear-gradient(172deg, #020308 0%, #070A1A 30%, #0E1232 62%, #1C1E4E 88%, #2B2960 100%)',
+          'linear-gradient(172deg, #030407 0%, #06081A 45%, #0C102B 85%, #131538 100%)',
         'mist-wash':
           'linear-gradient(180deg, #F8FAFC 0%, #EDF1F6 100%)',
       },
