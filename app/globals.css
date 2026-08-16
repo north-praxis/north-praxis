@@ -18,7 +18,7 @@ html {
 
 @keyframes twinkle {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.25; }
+  50% { opacity: 0.55; }
 }
 
 .tw-1 { animation: twinkle 5s ease-in-out infinite; }
