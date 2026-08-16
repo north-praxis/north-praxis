@@ -5,8 +5,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        night: '#0E1B2E',
-        deep: '#16273C',
+        night: '#080F1D',
+        deep: '#0F1D33',
         slate: '#2C4A6E',
         mid: '#56708E',
         mist: '#B9CBE0',
@@ -21,7 +21,7 @@ const config: Config = {
       },
       backgroundImage: {
         'night-wash':
-          'linear-gradient(160deg, #0E1B2E 0%, #16273C 45%, #2C4A6E 100%)',
+          'linear-gradient(165deg, #05090F 0%, #080F1D 40%, #12233C 85%, #1B3252 100%)',
         'mist-wash':
           'linear-gradient(180deg, #F8FAFC 0%, #EDF1F6 100%)',
       },

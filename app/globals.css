@@ -16,6 +16,19 @@ html {
   animation: pulse-slow 4s ease-in-out infinite;
 }
 
+@keyframes twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+.tw-1 { animation: twinkle 5s ease-in-out infinite; }
+.tw-2 { animation: twinkle 7.5s ease-in-out 1.2s infinite; }
+.tw-3 { animation: twinkle 9s ease-in-out 2.6s infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tw-1, .tw-2, .tw-3, .animate-pulse-slow { animation: none; }
+}
+
 .prose-body a {
   color: #2c4a6e;
   text-decoration: underline;

@@ -45,11 +45,11 @@ export default function Sections({ sections }: { sections: Section[] }) {
                   }}
                   aria-hidden="true"
                 />
-                <div className="relative mx-auto max-w-5xl px-6 pb-28 pt-40 sm:pb-40 sm:pt-52">
+                <div className="relative mx-auto max-w-5xl px-6 pb-32 pt-44 sm:pb-48 sm:pt-60">
                   <HTag className="max-w-2xl font-display text-5xl font-normal leading-[1.12] text-paper sm:text-6xl">
                     {s.headline}
                   </HTag>
-                  <p className="mt-7 max-w-xl text-lg font-light leading-relaxed text-mist">
+                  <p className="mt-7 max-w-xl text-lg font-light leading-relaxed text-mist/80">
                     {s.subhead}
                   </p>
                   <Link href={s.ctaHref} className={`mt-10 ${buttonPrimary}`}>
