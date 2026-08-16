@@ -1,13 +1,12 @@
 import type { Metadata } from 'next';
-import { Fraunces, Inter, IBM_Plex_Mono } from 'next/font/google';
+import { Julius_Sans_One, Inter, IBM_Plex_Mono } from 'next/font/google';
 import { SITE } from '@/lib/defaults';
 import './globals.css';
 
-const display = Fraunces({
+const display = Julius_Sans_One({
   subsets: ['latin'],
   variable: '--font-display',
-  weight: ['300', '400', '500'],
-  style: ['normal', 'italic'],
+  weight: '400',
 });
 const sans = Inter({ subsets: ['latin'], variable: '--font-sans' });
 const mono = IBM_Plex_Mono({

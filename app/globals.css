@@ -29,8 +29,14 @@ html {
   .tw-1, .tw-2, .tw-3, .animate-pulse-slow { animation: none; }
 }
 
+.font-display,
+.hero-h {
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+}
+
 .hero-h em {
-  font-style: italic;
+  font-style: normal;
   color: #D8A75B;
 }
 
