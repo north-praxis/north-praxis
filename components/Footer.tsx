@@ -8,7 +8,7 @@ export default function Footer() {
         <div>
           <p className="font-display text-xl tracking-wide text-paper">North Praxis</p>
           <p className="mt-2 text-sm font-light text-mid">
-            Strategy and systems for mission-driven work.
+            We reflect. We discern. And then we act.
           </p>
         </div>
         <nav className="flex gap-8">
