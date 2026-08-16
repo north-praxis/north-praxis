@@ -6,7 +6,8 @@ import './globals.css';
 const display = Fraunces({
   subsets: ['latin'],
   variable: '--font-display',
-  weight: ['400', '500'],
+  weight: ['300', '400', '500'],
+  style: ['normal', 'italic'],
 });
 const sans = Inter({ subsets: ['latin'], variable: '--font-sans' });
 const mono = IBM_Plex_Mono({

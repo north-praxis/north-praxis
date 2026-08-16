@@ -139,19 +139,6 @@ export default function Constellation() {
           opacity="0.4"
         />
       </g>
-
-      {/* a rare shooting star */}
-      <g className="shooting-star">
-        <line
-          x1="0"
-          y1="0"
-          x2="34"
-          y2="12"
-          stroke="#DDE9F6"
-          strokeWidth="0.9"
-          strokeLinecap="round"
-        />
-      </g>
     </svg>
   );
 }

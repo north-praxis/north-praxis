@@ -20,7 +20,7 @@ function GoldRule() {
 }
 
 const buttonPrimary =
-  'inline-block rounded-full bg-star px-8 py-3.5 text-xs font-medium uppercase tracking-[0.2em] text-night transition duration-300 hover:bg-[#E3B76F] hover:shadow-lg hover:shadow-star/20';
+  'inline-block rounded-full border border-star/50 px-9 py-4 text-xs uppercase tracking-[0.25em] text-star transition duration-500 hover:border-star hover:bg-star hover:text-night';
 
 const buttonDark =
   'inline-block rounded-full bg-night px-8 py-3.5 text-xs font-medium uppercase tracking-[0.2em] text-paper transition duration-300 hover:bg-deep hover:shadow-lg';
@@ -41,15 +41,16 @@ export default function Sections({ sections }: { sections: Section[] }) {
                   className="pointer-events-none absolute inset-0"
                   style={{
                     background:
-                      'radial-gradient(600px 400px at 78% 22%, rgba(216,167,91,0.10), transparent 70%)',
+                      'radial-gradient(600px 400px at 78% 22%, rgba(216,167,91,0.08), transparent 70%), radial-gradient(900px 300px at 50% 104%, rgba(196,138,66,0.10), transparent 70%), radial-gradient(120% 95% at 50% 38%, transparent 55%, rgba(2,3,8,0.5) 100%)',
                   }}
                   aria-hidden="true"
                 />
-                <div className="relative mx-auto max-w-5xl px-6 pb-32 pt-44 sm:pb-48 sm:pt-60">
-                  <HTag className="max-w-2xl font-display text-5xl font-normal leading-[1.12] text-paper sm:text-6xl">
-                    {s.headline}
-                  </HTag>
-                  <p className="mt-7 max-w-xl text-lg font-light leading-relaxed text-mist/80">
+                <div className="relative mx-auto max-w-5xl px-6 pb-36 pt-48 sm:pb-52 sm:pt-64">
+                  <HTag
+                    className="hero-h max-w-3xl font-display text-6xl font-light leading-[1.04] text-[#F2EAD9] sm:text-7xl"
+                    dangerouslySetInnerHTML={{ __html: s.headline }}
+                  />
+                  <p className="mt-8 max-w-xl text-lg font-light leading-relaxed text-mist/75">
                     {s.subhead}
                   </p>
                   <Link href={s.ctaHref} className={`mt-10 ${buttonPrimary}`}>
