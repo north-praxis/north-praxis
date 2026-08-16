@@ -8,7 +8,7 @@ const PORTAL_COOKIE = 'np_portal';
 
 export const dynamic = 'force-dynamic';
 export const metadata = {
-  title: 'Client portal | North Praxis',
+  title: { absolute: 'Client portal | North Praxis' },
   robots: 'noindex, nofollow',
 };
 

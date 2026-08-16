@@ -5,7 +5,10 @@ import { login, logout } from './actions';
 import ImageUploader from '@/components/admin/ImageUploader';
 
 export const dynamic = 'force-dynamic';
-export const metadata = { title: 'Admin | North Praxis', robots: 'noindex' };
+export const metadata = {
+  title: { absolute: 'Admin | North Praxis' },
+  robots: 'noindex',
+};
 
 export default async function AdminPage({
   searchParams,

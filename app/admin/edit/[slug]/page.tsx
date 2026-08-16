@@ -5,7 +5,10 @@ import { getServiceSupabase } from '@/lib/supabase';
 import EditorForm from '@/components/admin/EditorForm';
 
 export const dynamic = 'force-dynamic';
-export const metadata = { title: 'Edit page | North Praxis', robots: 'noindex' };
+export const metadata = {
+  title: { absolute: 'Edit page | North Praxis' },
+  robots: 'noindex',
+};
 
 export default async function EditPage({ params }: { params: { slug: string } }) {
   if (!isAuthed()) {
