@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
-import { Julius_Sans_One, Inter, IBM_Plex_Mono } from 'next/font/google';
+import { Big_Shoulders_Display, Inter, IBM_Plex_Mono } from 'next/font/google';
 import { SITE } from '@/lib/defaults';
 import CicadaButton from '@/components/CicadaButton';
 import './globals.css';
 
-const display = Julius_Sans_One({
+const display = Big_Shoulders_Display({
   subsets: ['latin'],
   variable: '--font-display',
-  weight: '400',
+  weight: ['100', '200'],
 });
 const sans = Inter({ subsets: ['latin'], variable: '--font-sans' });
 const mono = IBM_Plex_Mono({

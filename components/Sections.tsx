@@ -47,7 +47,7 @@ export default function Sections({ sections }: { sections: Section[] }) {
                 />
                 <div className="relative mx-auto max-w-5xl px-6 pb-36 pt-48 sm:pb-52 sm:pt-64">
                   <HTag
-                    className="hero-h max-w-3xl font-display text-5xl leading-[1.18] text-[#F2EAD9] sm:text-6xl"
+                    className="hero-h max-w-3xl font-display text-7xl leading-[1.02] text-[#F2EAD9] sm:text-8xl"
                     dangerouslySetInnerHTML={{ __html: s.headline }}
                   />
                   <p className="mt-8 max-w-xl text-lg font-light leading-relaxed text-mist/75">
